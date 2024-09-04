@@ -4,8 +4,10 @@ import { useState } from 'react'
 function App() {
     const [token, setToken] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+const [result, setResult] = useState('')
 
     const playGame = async () => {
+      setResult('')
         setIsLoading(true)
         const headers = {
             accept: 'application/json, text/plain, */*',
@@ -23,7 +25,7 @@ function App() {
 
                     const response2 = await axios.post('https://game-domain.blum.codes/api/v1/game/claim', { gameId, points }, { headers })
 
-                    alert(response2?.data, ` +${points}`)
+                    setResult(response2?.data, ` +${points}`)
                     setIsLoading(false)
                 } catch (error) {
                     setIsLoading(false)
@@ -43,7 +45,8 @@ function App() {
                     run
                 </button>
             </div>
-            {isLoading && <h1>รอแปป</h1>}
+            {isLoading && <h1>รอแปป(40วิ)</h1>}
+            {result && <h1>{result}</h1>}
         </>
     )
 }
