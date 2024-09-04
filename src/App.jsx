@@ -25,7 +25,7 @@ const [result, setResult] = useState('')
 
                     const response2 = await axios.post('https://game-domain.blum.codes/api/v1/game/claim', { gameId, points }, { headers })
 
-                    setResult(response2?.data, ` +${points}`)
+                    setResult(`${response2?.data} +${points}`)
                     setIsLoading(false)
                 } catch (error) {
                     setIsLoading(false)
